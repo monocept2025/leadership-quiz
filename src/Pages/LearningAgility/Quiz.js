@@ -1,15 +1,22 @@
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { LinearProgress } from '@mui/material';
-import { LearningAgilityQuestions } from '../uitility';
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { LinearProgress } from "@mui/material";
+import { LearningAgilityQuestions } from "../uitility";
 
-
-const options = ["Rarely or never", "Occasionally", "Sometimes", "Often", "Always"];
+const options = [
+  "Rarely or never",
+  "Occasionally",
+  "Sometimes",
+  "Often",
+  "Always",
+];
 
 function LearningAgilityQuiz() {
   const navigate = useNavigate();
   const [currentQuestion, setCurrentQuestion] = useState(0);
-  const [answers, setAnswers] = useState(Array(LearningAgilityQuestions.length).fill(null));
+  const [answers, setAnswers] = useState(
+    Array(LearningAgilityQuestions.length).fill(null)
+  );
 
   const handleOptionChange = (index, option) => {
     const newAnswers = [...answers];
@@ -21,7 +28,7 @@ function LearningAgilityQuiz() {
     if (currentQuestion < LearningAgilityQuestions.length - 1) {
       setCurrentQuestion(currentQuestion + 1);
     } else {
-      navigate('/learningagilityresults', { state: { answers } });
+      navigate("/learningagilityresults", { state: { answers } });
     }
   };
 
@@ -31,13 +38,14 @@ function LearningAgilityQuiz() {
     }
   };
 
-  const progress = ((currentQuestion + 1) / LearningAgilityQuestions.length) * 100;
+  const progress =
+    ((currentQuestion + 1) / LearningAgilityQuestions.length) * 100;
 
   return (
     <div>
       <h2>My Learning Agility Quiz</h2>
       <LinearProgress variant="determinate" value={progress} />
-      <div>
+      <div style={{ marginLeft: 20 }}>
         <p>{LearningAgilityQuestions[currentQuestion]}</p>
         <ul>
           {options.map((option, index) => (
@@ -55,12 +63,14 @@ function LearningAgilityQuiz() {
           ))}
         </ul>
       </div>
-      <div>
+      <div style={{ display: "flex", marginLeft: 20, gap: 40 }}>
         <button onClick={handleBack} disabled={currentQuestion === 0}>
           Back
         </button>
         <button onClick={handleNext}>
-          {currentQuestion === LearningAgilityQuestions.length - 1 ? 'Submit' : 'Next'}
+          {currentQuestion === LearningAgilityQuestions.length - 1
+            ? "Submit"
+            : "Next"}
         </button>
       </div>
     </div>

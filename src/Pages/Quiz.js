@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
-import { LinearProgress } from '@mui/material';
-import { quizQuestions } from './uitility';
+import React, { useState } from "react";
+import { useParams, useNavigate } from "react-router-dom";
+import { LinearProgress } from "@mui/material";
+import { quizQuestions } from "./uitility";
 
 function Quiz() {
   const { quizId } = useParams();
@@ -22,7 +22,7 @@ function Quiz() {
       setCurrentQuestion(currentQuestion + 1);
     } else {
       // Submit the quiz and navigate to results
-      navigate('/results', { state: { answers } });
+      navigate("/results", { state: { answers } });
     }
   };
 
@@ -38,7 +38,7 @@ function Quiz() {
     <div>
       <h2>Quiz {quizId}</h2>
       <LinearProgress variant="determinate" value={progress} />
-      <div>
+      <div style={{ marginLeft: 20 }}>
         <p>{questions[currentQuestion]?.question}</p>
         <ul>
           {questions[currentQuestion]?.options.map((option, index) => (
@@ -55,12 +55,12 @@ function Quiz() {
           ))}
         </ul>
       </div>
-      <div>
+      <div style={{ display: "flex", marginLeft: 20, gap: 40 }}>
         <button onClick={handleBack} disabled={currentQuestion === 0}>
           Back
         </button>
         <button onClick={handleNext}>
-          {currentQuestion === questions.length - 1 ? 'Submit' : 'Next'}
+          {currentQuestion === questions.length - 1 ? "Submit" : "Next"}
         </button>
       </div>
     </div>
