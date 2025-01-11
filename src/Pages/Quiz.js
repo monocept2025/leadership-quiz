@@ -36,7 +36,11 @@ function Quiz() {
 
   return (
     <div>
-      <h2>Quiz {quizId}</h2>
+      <h2>Social Style Survey</h2>
+      <h4>
+        Examine the following word sets and choose one from each set that
+        describes you best.
+      </h4>
       <LinearProgress variant="determinate" value={progress} />
       <div style={{ marginLeft: 20 }}>
         <p>{questions[currentQuestion]?.question}</p>
